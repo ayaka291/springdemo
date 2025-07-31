@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <!-- Required meta tags -->
@@ -34,11 +34,10 @@
             <div class="col">
                 <div class="mb-3">
                     <label for="brand" class="form-label">メーカー</label>
-                    <select class="form-select" id="brand" aria-label="Default select example">
-                        <option selected>Honda</option>
-                        <option value="1">Kawasaki</option>
-                        <option value="2">Yamaha</option>
-                        <option value="3">Suzuki</option>
+                    <select class="form-select" id="brand">
+                        <option value="">メーカーを選択</option>
+                        <option th:each="brand : ${brands}" th:value="${brand.brandId}" th:text="${brand.brandName}">
+                        </option>
                     </select>
                 </div>
             </div>
@@ -71,13 +70,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Kawasaki</td>
-                            <td>Z900RS</td>
-                            <td>水冷4気筒</td>
-                            <td>1000000</td>
-                            <td>テストコメント</td>
+                        <tr th:each="item : ${demoList}">
+                            <th scope="row" th:text="${item.demoNo}"></th>
+                            <td th:text="${item.brand.brandName}"></td>
+                            <td th:text="${item.demoName}"></td>
+                            <td th:text="|${item.cooling}${item.cylinder}気筒|"></td>
+                            <td th:text="|${#numbers.formatInteger(item.price, 1, 'COMMA')}円|"></td>
+                            <td th:text="${item.comment}"></td>
                         </tr>
                     </tbody>
                 </table>
