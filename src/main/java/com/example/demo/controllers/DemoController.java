@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.models.Brand;
 import com.example.demo.models.Item;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j //←ログ出力
 @Controller
 public class DemoController {
 
@@ -45,6 +47,9 @@ public class DemoController {
 
         model.addAttribute("brands", brands);
         model.addAttribute("demoList", demo);
+
+        //ログ出力
+        log.info("demoList: {}", demo);
         
 
         return "demo_list";
