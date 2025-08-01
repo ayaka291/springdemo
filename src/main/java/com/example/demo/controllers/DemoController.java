@@ -49,7 +49,7 @@ public class DemoController {
         model.addAttribute("demoList", demo);
 
         //ログ出力
-        log.info("demoList: {}", demo);
+        log.debug("demoList: {}", demo);
         
 
         return "demo_list";
