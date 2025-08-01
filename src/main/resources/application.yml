@@ -1,0 +1,18 @@
+#自動でインデントできない不具合が発生、今はChatGPTで対応する。
+spring:
+  application:
+    name: demo
+  devtools:
+    livereload:
+      enabled: false
+  thymeleaf:
+    cache: false
+
+logging:
+  level:
+    root: info
+  file:
+    name: app.log
+  logback:
+    rollingpolicy:
+      max-file-size: 1MB
