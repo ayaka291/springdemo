@@ -1,14 +1,30 @@
-#自動でインデントできない不具合が発生、今はChatGPTで対応する。
+# 自動でインデントできない不具合が発生、今はChatGPTで対応する。
 spring:
   application:
-    name: demo
+    name: demo # 開発中のプロジェクト名
   devtools:
     livereload:
-      enabled: false
+      enabled: false # リロード無効化
   thymeleaf:
-    cache: false
+    cache: false # テンプレートキャッシュ無効
+  datasource: # MySQL接続設定を以下に記述する
+    url: jdbc:mysql://localhost:3306/demodb?useSSL=false&serverTimezone=Asia/Tokyo&characterEncoding=utf8
+    username: develop
+    password: example
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa: # JPA / Hibernate設定 update で開発に適した設定。SQLもログに出力。
+    hibernate:
+      ddl-auto: update # 必要に応じて 'create', 'update', 'none' などに変更
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
 
-logging:
+server:
+  port: 8080 # ポート番号
+
+logging: #ログ設定
   level:
     root: info
   file:
