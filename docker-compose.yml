@@ -1,0 +1,23 @@
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: dev0801 # rootユーザーのパスワード
+      MYSQL_USER: develop # 一般ユーザー
+      MYSQL_PASSWORD: example # パスワード
+      MYSQL_DATABASE: demodb # データベース名
+      TZ: Asia/Tokyo # タイムゾーンを東京に設定（任意）
+    ports:
+      - "3306:3306" #　外部からMySQL接続可能
+    container_name: mysql-container # コンテナ名
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci # ← ② 文字コードと照合順序（任意）
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - "8081:80" #ブラウザ接続可能なポート番号
+    environment:
+      PMA_HOST: db

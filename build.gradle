@@ -6,6 +6,7 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
 
 java {
 	toolchain {
@@ -24,14 +25,18 @@ repositories {
 }
 
 dependencies {
+	implementation 'com.mysql:mysql-connector-j:8.0.33' // MySQLドライバの依存関係
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	// 以下が JPA 関連の記述
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+
 }
 
 tasks.named('test') {
@@ -48,3 +53,4 @@ tasks.register("dev") {
     }
 }
 
+// build.gradle修正後「./gradlew clean build --refresh-dependencies」でキャッシュクリアすること。springboot再起動できなくなる。

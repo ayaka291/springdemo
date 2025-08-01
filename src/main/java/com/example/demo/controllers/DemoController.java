@@ -16,7 +16,7 @@ import com.example.demo.models.Item;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j //←ログ出力
+@Slf4j // ログ出力
 @Controller
 public class DemoController {
 
