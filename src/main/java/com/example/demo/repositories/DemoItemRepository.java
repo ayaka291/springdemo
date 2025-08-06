@@ -12,8 +12,8 @@ import com.example.demo.entity.DemoItem;
 @Repository
 public interface DemoItemRepository extends JpaRepository<DemoItem, Long> {
 
-    @Query("SELECT d FROM DemoItem d WHERE "
-    +"(:brandId IS NULL OR :brandId = 0 OR d.brand.brandId = :brandId) AND "
-    +"(:keyword IS NULL OR d.demoName LIKE %:keyword%)")
+    @Query("SELECT d FROM DemoItem d WHERE "+
+    "(:brandId IS NULL OR d.brand.brandId = :brandId) AND "+
+    "(:keyword IS NULL OR d.demoName LIKE %:keyword% OR d.comment LIKE %:keyword%)")
     List<DemoItem> searchByConditions(@Param("brandId") Long brandId, @Param("keyword") String keyword);
 }
