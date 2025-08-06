@@ -32,31 +32,35 @@
         </div>
     </nav>
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="mb-3">
-                    <label for="brand" class="form-label">ブランド</label>
-                    <select class="form-select" id="brand">
-                        <option value="">ブランドを選択</option>
-                        <option th:each="brand : ${brands}" th:value="${brand.brandId}" th:text="${brand.brandName}">
-                        </option>
-                    </select>
+
+        <form th:action="@{/demo_list}" method="get">
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="brand" class="form-label">ブランド</label>
+                        <select class="form-select" id="brand" name="brand">
+                            <option value="">ブランドを選択</option>
+                            <option th:each="brand : ${brands}" th:value="${brand.brandId}"
+                                th:text="${brand.brandName}" th:selected="${brand.brandId == selectedBrandId}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="keyword" class="form-label">キーワード</label>
+                        <input type="text" class="form-control" id="keyword" name="keyword" th:value="${keyword}">
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="mb-3">
-                    <label for="keyword" class="form-label">キーワード</label>
-                    <input type="text" class="form-control" id="keyword" placeholder="">
+            <div class="row">
+                <div class="col d-flex flex-row-reverse">
+                    <button type="submit" class="btn btn-success">検索</button>
+                    <a th:href="@{/demo_list}" class="btn btn-secondary ms-1 me-1">リセット</a>
+                    <a th:href="@{/demo_form}" class="btn btn-primary">新規登録</a>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col d-flex flex-row-reverse">
-                <button type="button" class="btn btn-primary">新規</button>
-                <button type="button" class="btn btn-secondary ms-1 me-1">リセット</button>
-                <button type="button" class="btn btn-success">検索</button>
-            </div>
-        </div>
+        </form>
 
         <div class="row">
             <div class="col">
@@ -86,10 +90,10 @@
         </div>
     </div>
 
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script> 
+        crossorigin="anonymous"></script>
 
 </body>
 
