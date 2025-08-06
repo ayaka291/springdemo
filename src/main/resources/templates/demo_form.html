@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <title>商品登録フォーム</title>
+    <style>
+        body {
+            font-family: "Noto Sans JP", sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- As a heading -->
+    <nav class="navbar navbar-dark bg-dark mb-3">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">商品登録</span>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <h2 class="mb-3">商品登録フォーム</h2>
+        <form th:action="@{/demo_form}" th:object="${demoItem}" method="post">
+
+            <!-- 商品番号は自動採番のため、省略 -->
+
+            <div class="mb-3">
+                <label class="form-label">ブランド</label>
+                <select class="form-select" name="brandId">
+                    <option value="">選択してください</option>
+                    <option th:each="brand : ${brands}" th:value="${brand.brandId}" th:text="${brand.brandName}"></option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">商品名</label>
+                <input type="text" th:field="*{demoName}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">価格</label>
+                <input type="number" th:field="*{price}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">個数</label>
+                <input type="number" th:field="*{quantity}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">コメント</label>
+                <textarea th:field="*{comment}" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">登録</button>
+        </form>
+
+        <p class="mt-3">
+            <a th:href="@{/demo_list}">一覧に戻る</a>
+        </p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
