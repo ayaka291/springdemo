@@ -7,6 +7,8 @@ spring:
       enabled: false # リロード無効化
   thymeleaf:
     cache: false # テンプレートキャッシュ無効
+    prefix: classpath:/templates/
+    suffix: .html
   datasource: # MySQL接続設定を以下に記述する
     url: jdbc:mysql://localhost:3306/demodb?useSSL=false&serverTimezone=Asia/Tokyo&characterEncoding=utf8
     username: develop
