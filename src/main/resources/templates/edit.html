@@ -39,7 +39,7 @@
 
             <div class="mb-3">
                 <label class="form-label">ブランド</label>
-                <select class="form-select" name="brandId" th:field="*{brandId}">
+                <select class="form-select" name="brandId" th:field="*{brand.brandId}">
                     <option value="">選択してください</option>
                     <option th:each="brand : ${brands}" th:value="${brand.brandId}" th:text="${brand.brandName}">
                     </option>

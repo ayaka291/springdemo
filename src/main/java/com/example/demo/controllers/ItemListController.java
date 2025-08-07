@@ -77,9 +77,14 @@ public class ItemListController {
     @GetMapping("/edit")
     public String showEditForm(@RequestParam("id") Long id, Model model) {
         DemoItem item = demoItemRepository.findById(id).orElse(null);
-        List<Brand> brands = brandRepository.findAll();
 
-        model.addAttribute("id", item);
+        if (item == null) {
+            // idに該当するアイテムが存在しない場合の対処
+            return "resirect:/demo_list?error=itemNotFound";
+        }
+         List<Brand> brands = brandRepository.findAll();
+
+        model.addAttribute("demoItem", item);
         model.addAttribute("brands", brands);
         return "edit";
     }
