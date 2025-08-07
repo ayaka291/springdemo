@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-public class SwcurityConfig {
+public class SecurityConfig {
 
     // セキュリティ設定
     @Bean
@@ -24,7 +24,7 @@ public class SwcurityConfig {
                         .anyRequest().authenticated() // それ以降は認証必須
                 )
                 .formLogin(form -> form
-                        .loginPage("/login")
+                        .loginPage("/login") // GETで表示するページ
                         .defaultSuccessUrl("/demo_list", true) // 成功後の遷移先
                         .permitAll())
                 .logout(logout -> logout
@@ -39,7 +39,7 @@ public class SwcurityConfig {
         var manager = new InMemoryUserDetailsManager();
         manager.createUser(
                 User.withUsername("testuser")
-                        .password(passwoordEncoder().encode("password"))
+                        .password(passwoordEncoder().encode("test"))
                         .roles("USER")
                         .build());
         return manager;
