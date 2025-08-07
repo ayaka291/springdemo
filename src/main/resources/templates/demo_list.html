@@ -29,6 +29,9 @@
     <nav class="navbar navbar-dark bg-dark mb-3">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1">欲しいもの一覧</span>
+            <form action="/logout" method="post" style="display: inline;">
+                <button type="submit" class="btn btn-light">ログアウト</button>
+            </form>
         </div>
     </nav>
     <div class="container">
@@ -40,8 +43,8 @@
                         <label for="brand" class="form-label">ブランド</label>
                         <select class="form-select" id="brand" name="brand">
                             <option value="">ブランドを選択</option>
-                            <option th:each="brand : ${brands}" th:value="${brand.brandId}"
-                                th:text="${brand.brandName}" th:selected="${brand.brandId == selectedBrandId}">
+                            <option th:each="brand : ${brands}" th:value="${brand.brandId}" th:text="${brand.brandName}"
+                                th:selected="${brand.brandId == selectedBrandId}">
                             </option>
                         </select>
                     </div>
