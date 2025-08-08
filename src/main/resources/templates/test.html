@@ -1,10 +1,7 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<!-- 共通パーツ読み込み -->
+<head th:replace="fragments/header :: common_head('練習')"></head>
 <body>
     <p><span th:text="${name}"></span>さん、テスト。てすと。hello。更新できた？</p>
 
