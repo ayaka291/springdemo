@@ -17,7 +17,7 @@ public class SecurityConfig {
 
     // セキュリティ設定
     @Bean
-    public SecurityFilterChain SecurityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login", "/css/**", "/js/**").permitAll() // ログイン・静的ファイルは認証不要
@@ -35,11 +35,11 @@ public class SecurityConfig {
 
     // テスト用のメモリ内ユーザー定義
     @Bean
-    public UserDetailsService UserDetailsService() {
+    public UserDetailsService userDetailsService() {
         var manager = new InMemoryUserDetailsManager();
         manager.createUser(
                 User.withUsername("testuser")
-                        .password(passwoordEncoder().encode("test"))
+                        .password(passwordEncoder().encode("test"))
                         .roles("USER")
                         .build());
         return manager;
@@ -47,7 +47,7 @@ public class SecurityConfig {
 
     // パスワード暗号化
     @Bean
-    public PasswordEncoder passwoordEncoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
